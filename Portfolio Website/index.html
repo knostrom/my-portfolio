@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kesten Nostrom - Portfolio</title>
+    <link rel="stylesheet" href="colors.css">
+</head>
+<body>
+    <div class="canvas-container">
+        <!-- Header -->
+        <header>
+            <h1 class="text-blue">Kesten Nostrom's Portfolio</h1>
+        </header>
+
+        <!-- Main Structure -->
+        <main class="main-content">
+            <!-- Left Column: About & Mini Projects -->
+            <div class="column">
+                <!-- Who am I? -->
+                <section class="blueprint-box">
+                    <img class="portfolio-picture" src="SchoolPic.jpg" alt="My picture">
+                    <h2 class="text-blue">Who am I?</h2>
+                    <p class="text-orange">
+                        Hi i'm a 17 year old learning computer programming since I started high school. I'm also learning some digital art skills. Below are cards that will show you more information about their projects when clicked.
+                    </p>
+                </section>
+
+                <!-- Crash Landing Card -->
+                <article class="blueprint-box project-card" 
+                         data-project="crash-landing" 
+                         data-title="Crash Landing" 
+                         data-desc="I made my own video game in a Game Development Fundamentals class, at Provo High titled Crash Landing. It's short platformer where you fight aliens. while digging out a cave in order to find the parts to fix your spaceship." 
+                         data-img="CLScreenshot.png">
+                    <img src="CLScreenshot(1).png" alt="Crash Landing Screenshot">
+                    <div class="project-details">
+                        <h3 class="text-blue">Crash Landing</h3>
+                    </div>
+                </article>
+
+                <!-- GameLibrary Card -->
+                <article class="blueprint-box project-card" 
+                         data-project="game-library" 
+                         data-title="GameLibrary" 
+                         data-desc="I took a Web Development class where I made a website called GameLibrary. It acts as a centralized dashboard where you can look up video games, quick strategies, tips, and hidden tricks all in one place." 
+                         data-img="games.html.png">
+                    <img src="games.html.png" alt="GameLibrary Screenshot">
+                    <div class="project-details">
+                        <h3 class="text-blue">GameLibrary</h3>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Right Column: Project Experience -->
+            <div class="column">
+                <section class="blueprint-box">
+                    <h2 class="text-blue">Projects I've worked on.</h2>
+                    <ul class="text-orange">
+                        <li>I took a Web Development class where I made a website called GameLibrary where you could look up video games, tips, and tricks in one place.</li>
+                        <li>I also took a Computer Science Principles class.</li>
+                        <li>I've made my own video game in a Game Development Fundamentals class at Provo High titled Crash Landing.</li>
+                        <img src="https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/9/e/8/3/9e83c5f6b0e6d804544a26e60cc97510d0589c10.png" alt="">
+                        <li>Used to make games using Roblox Studio. None of them were public. It was just a fun hobby that at least taught me how to understand and use LUA, along with some 3D modeling skills. Blender is what I'd use now.</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="blueprint-box">
+            <p class="text-orange">© 2026 Kesten Nostrom.</p>
+            <div class="footer-links">
+                <a href="mailto:your.email@example.com" class="text-blue">Email Me</a>
+                <a href="https://github.com" target="_blank" class="text-blue">GitHub</a>
+                <a href="https://linkedin.com" target="_blank" class="text-blue">LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- The Modal Popup Window (Sits hidden outside the layout layout) -->
+    <div id="project-modal" class="modal-overlay">
+        <article class="blueprint-box modal-content">
+            <button id="close-modal" class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div id="feature-media-container">
+                <!-- Injected via JavaScript -->
+            </div>
+            <div class="project-details">
+                <h3 class="text-blue" id="feature-title">Project Details</h3>
+                <p class="text-orange" id="feature-desc">Descriptions load here.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Interactivity Script -->
+    <script>
+        const modal = document.getElementById('project-modal');
+        const closeBtn = document.getElementById('close-modal');
+        const featureTitle = document.getElementById('feature-title');
+        const featureDesc = document.getElementById('feature-desc');
+        const mediaContainer = document.getElementById('feature-media-container');
+
+        // Open Modal when a project is clicked
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.getAttribute('data-title');
+                const desc = card.getAttribute('data-desc');
+                const imgPath = card.getAttribute('data-img');
+                
+                featureTitle.textContent = title;
+                featureDesc.textContent = desc;
+                
+                if (!imgPath || imgPath === 'placeholder') {
+                    mediaContainer.innerHTML = `<div class="picture-placeholder">picture</div>`;
+                } else {
+                    mediaContainer.innerHTML = `<img src="${imgPath}" alt="${title} Display" class="modal-img">`;
+                }
+                
+                modal.style.display = 'flex';
+            });
+        });
+
+        // Close Modal when clicking the 'X' button
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close Modal when clicking the dark backdrop shadow
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
