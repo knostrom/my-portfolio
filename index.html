@@ -90,6 +90,50 @@
                         <button class="text-button" type="button">View project <span aria-hidden="true">→</span></button>
                     </div>
                 </article>
+
+                <article class="project-card" tabindex="0"
+                         data-title="Photography Website"
+                         data-desc="A photography website that can switch between commercial and wedding themes.">
+                    <div class="project-image project-artwork project-artwork-photo" role="img" aria-label="Preview of a photography website with commercial and wedding themes">
+                        <div class="photo-art-header">
+                            <span>FRAME / STUDIO</span>
+                            <span>PORTFOLIO</span>
+                        </div>
+                        <div class="photo-art-content">
+                            <p>ONE SITE. TWO STORIES.</p>
+                            <h4>Commercial <span>↔</span> Weddings</h4>
+                            <div class="photo-art-switch">
+                                <span>COMMERCIAL</span>
+                                <span>WEDDINGS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-copy">
+                        <p class="project-type">Photography website</p>
+                        <h3>Photography Website</h3>
+                        <p>A photography site that switches between commercial and wedding themes.</p>
+                        <button class="text-button" type="button">View project <span aria-hidden="true">→</span></button>
+                    </div>
+                </article>
+
+                <article class="project-card" tabindex="0"
+                         data-title="Salt Circle"
+                         data-desc="A game I created for a game jam themed around circles.">
+                    <div class="project-image project-artwork project-artwork-salt" role="img" aria-label="Concentric circles illustrating the Salt Circle game">
+                        <div class="salt-orbit salt-orbit-outer"></div>
+                        <div class="salt-orbit salt-orbit-inner"></div>
+                        <div class="salt-art-title">
+                            <span>GAME JAM / CIRCLE THEME</span>
+                            <strong>SALT<br>CIRCLE</strong>
+                        </div>
+                    </div>
+                    <div class="project-copy">
+                        <p class="project-type">Game jam</p>
+                        <h3>Salt Circle</h3>
+                        <p>A game created for a game jam themed around circles.</p>
+                        <button class="text-button" type="button">View project <span aria-hidden="true">→</span></button>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -155,7 +199,17 @@
         function openProject(card) {
             featureTitle.textContent = card.dataset.title;
             featureDesc.textContent = card.dataset.desc;
-            mediaContainer.innerHTML = `<img src="${card.dataset.img}" alt="${card.dataset.imgAlt || card.dataset.title + ' project image'}" class="modal-img">`;
+            if (card.dataset.img) {
+                const image = document.createElement('img');
+                image.src = card.dataset.img;
+                image.alt = card.dataset.imgAlt || `${card.dataset.title} project image`;
+                image.className = 'modal-img';
+                mediaContainer.replaceChildren(image);
+            } else {
+                const artwork = card.querySelector('.project-image').cloneNode(true);
+                artwork.classList.add('modal-project-art');
+                mediaContainer.replaceChildren(artwork);
+            }
             modal.classList.add('is-open');
             closeBtn.focus();
         }
