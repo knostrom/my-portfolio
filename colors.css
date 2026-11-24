@@ -31,12 +31,16 @@ a {
 }
 
 .site-header {
-    width: min(1180px, calc(100% - 48px));
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
     height: 84px;
-    margin: 0 auto;
+    padding: 0 max(24px, calc((100% - 1180px) / 2));
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: var(--night);
     border-bottom: 1px solid rgba(88, 166, 255, 0.25);
 }
 
@@ -296,8 +300,7 @@ footer h2 {
 .experience-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid rgba(88, 166, 255, 0.25);
-    border-bottom: 1px solid rgba(88, 166, 255, 0.25);
+    border: 1px solid rgba(88, 166, 255, 0.25);
 }
 
 .experience-strip div {
@@ -309,8 +312,12 @@ footer h2 {
     border-right: 1px solid rgba(88, 166, 255, 0.25);
 }
 
-.experience-strip div:last-child {
+.experience-strip div:nth-child(3n) {
     border-right: none;
+}
+
+.experience-strip div:nth-child(-n+3) {
+    border-bottom: 1px solid rgba(88, 166, 255, 0.25);
 }
 
 .experience-strip span {
@@ -447,7 +454,6 @@ footer {
 }
 
 @media (max-width: 680px) {
-    .site-header,
     main,
     footer {
         width: min(100% - 32px, 1180px);
@@ -455,6 +461,7 @@ footer {
 
     .site-header {
         height: 72px;
+        padding: 0 16px;
     }
 
     .brand > span:last-child {

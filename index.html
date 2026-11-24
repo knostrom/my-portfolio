@@ -78,9 +78,10 @@
                 <article class="project-card" tabindex="0"
                          data-title="Roblox & Blender"
                          data-desc="I used Roblox Studio to build private hobby projects and learned Lua scripting and 3D modeling fundamentals. I now use Blender to continue developing my digital art and modeling skills."
-                         data-img="games.png">
+                         data-img="blenderlogo.webp"
+                         data-img-alt="Blender logo">
                     <div class="project-image">
-                        <img src="games.png" alt="Digital art and 3D project artwork">
+                        <img src="robloxstudiobanner.jpeg" alt="Roblox Studio logo banner">
                     </div>
                     <div class="project-copy">
                         <p class="project-type">3D modeling & scripting</p>
@@ -95,15 +96,27 @@
         <section class="experience-strip" aria-label="Experience">
             <div>
                 <span>01</span>
-                <p>Computer Science<br>Principles</p>
+                <p>Creative Coding</p>
             </div>
             <div>
                 <span>02</span>
-                <p>Game Development<br>Fundamentals</p>
+                <p>Roblox Studio</p>
             </div>
             <div>
                 <span>03</span>
-                <p>Web<br>Development</p>
+                <p>Web Development</p>
+            </div>
+            <div>
+                <span>04</span>
+                <p>Computer Science<br>Principles</p>
+            </div>
+            <div>
+                <span>05</span>
+                <p>Game Development<br>Fundamentals</p>
+            </div>
+            <div>
+                <span>06</span>
+                <p>Provo CAPS;<br>Digital Design<br>&amp; Software Development</p>
             </div>
         </section>
     </main>
@@ -142,7 +155,7 @@
         function openProject(card) {
             featureTitle.textContent = card.dataset.title;
             featureDesc.textContent = card.dataset.desc;
-            mediaContainer.innerHTML = `<img src="${card.dataset.img}" alt="${card.dataset.title} screenshot" class="modal-img">`;
+            mediaContainer.innerHTML = `<img src="${card.dataset.img}" alt="${card.dataset.imgAlt || card.dataset.title + ' project image'}" class="modal-img">`;
             modal.classList.add('is-open');
             closeBtn.focus();
         }
